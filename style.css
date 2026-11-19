@@ -1,12 +1,21 @@
+/* themes */
+:root{color-scheme:light;--bg:#FFFFFF;--fg:#111111;--muted:#6B6B6B;--line:#E5E5E5;--rule:#111111;--tile:#F0F0F0;--bar:rgba(255,255,255,.96)}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0E0E0F;--fg:#EDEDED;--muted:#9A9A9A;--line:#262628;--rule:#EDEDED;--tile:#1A1A1C;--bar:rgba(14,14,15,.94)}
+:root[data-theme="dark"] .logo{filter:invert(1)}
+.theme-toggle{background:none;border:0;margin:0;padding:12px 0;font:inherit;letter-spacing:inherit;text-transform:inherit;color:var(--fg);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.theme-toggle:hover{color:var(--muted)}
+.theme-toggle:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.theme-toggle svg{display:block}
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:#FFFFFF;color:#111111;font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.45;text-transform:uppercase;letter-spacing:.01em;-webkit-font-smoothing:antialiased}
-a{color:#111111}a:hover{color:#6B6B6B}
+body{margin:0;background:var(--bg);color:var(--fg);transition:background-color .25s ease,color .25s ease;font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.45;text-transform:uppercase;letter-spacing:.01em;-webkit-font-smoothing:antialiased}
+a{color:var(--fg)}a:hover{color:var(--muted)}
 img{max-width:100%}
 [hidden]{display:none!important}
 
 /* top bar */
-.topbar{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;justify-content:space-between;padding:12px 32px;border-bottom:1px solid #E5E5E5;position:sticky;top:0;background:rgba(255,255,255,.96);z-index:10}
+.topbar{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;justify-content:space-between;padding:12px 32px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bar);z-index:10}
 .topbar a,.sections a{text-decoration:none;padding:12px 0;display:inline-block;text-underline-offset:4px}
 .brand{display:inline-flex!important;align-items:center;gap:12px}
 .brand img{height:22px;width:auto;display:block}
@@ -32,25 +41,25 @@ img{max-width:100%}
 .box:hover .dim,.box:focus-visible .dim{opacity:0}
 .box:hover .shade,.box:focus-visible .shade{opacity:1}
 .box:hover .label,.box:focus-visible .label{top:calc(100% - 32px);transform:translate(-50%,-100%) scale(.78)}
-.box:focus-visible{outline:2px solid #111111;outline-offset:-4px}
+.box:focus-visible{outline:2px solid var(--fg);outline-offset:-4px}
 @media (hover:none){.box .dim{opacity:.55}}
 
 /* gallery */
 .gallery{padding:120px 32px 96px}
 .gallery h1{margin:0 0 56px;font-size:clamp(40px,6vw,88px);font-weight:500;line-height:.95;letter-spacing:-.02em}
-.g-bar{display:flex;flex-wrap:wrap;gap:4px 24px;justify-content:space-between;align-items:center;border-top:1px solid #111111;margin-bottom:16px}
+.g-bar{display:flex;flex-wrap:wrap;gap:4px 24px;justify-content:space-between;align-items:center;border-top:1px solid var(--rule);margin-bottom:16px}
 .g-bar a{text-decoration:none;padding:12px 0}
 .g-bar h2{margin:0;font-size:15px;font-weight:500}
-.g-bar h2 span{color:#6B6B6B;font-weight:400}
-.g-bar p{margin:0;color:#6B6B6B}
+.g-bar h2 span{color:var(--muted);font-weight:400}
+.g-bar p{margin:0;color:var(--muted)}
 .g-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;align-items:start}
-.thumb{display:block;width:100%;margin:0;padding:0;border:0;background:#F0F0F0;cursor:zoom-in}
+.thumb{display:block;width:100%;margin:0;padding:0;border:0;background:var(--tile);cursor:zoom-in}
 .thumb img{display:block;width:100%;height:auto;transition:opacity .2s ease}
 .thumb:hover img{opacity:.85}
-.thumb:focus-visible{outline:2px solid #111111;outline-offset:3px}
+.thumb:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
 
 /* about */
-.about{display:flex;flex-wrap:wrap;gap:32px;margin:0 32px;padding:14px 0 120px;border-top:1px solid #111111}
+.about{display:flex;flex-wrap:wrap;gap:32px;margin:0 32px;padding:14px 0 120px;border-top:1px solid var(--rule)}
 .about h2{flex:1 1 360px;margin:0;font-size:15px;font-weight:500}
 .about>div{flex:1 1 360px;max-width:680px;display:flex;flex-direction:column;gap:24px}
 .about p{margin:0}
@@ -79,5 +88,6 @@ img{max-width:100%}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
+  body{transition:none}
   .box .dim,.box .shade,.box .label,.thumb img{transition:none}
 }

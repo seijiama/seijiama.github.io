@@ -8,6 +8,16 @@
 <meta property="og:title" content="netvisuals_ — Seiji Ma">
 <meta property="og:description" content="Sports graphics by Seiji Ma (@netvisuals_).">
 <meta property="og:image" content="images/nba-raptors-uniforms.jpg">
+<script>
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('nv-theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0F" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,12 +28,13 @@
 <div class="page">
 
 <header class="topbar">
-  <a class="brand" href="#" data-home><img src="images/logo.png" alt="" width="25" height="22">©Seiji Ma / netvisuals_</a>
+  <a class="brand" href="#" data-home><img class="logo" src="images/logo.png" alt="" width="25" height="22">©Seiji Ma / netvisuals_</a>
   <nav class="sections" aria-label="Sections" id="nav"></nav>
   <div class="links">
     <a href="https://www.instagram.com/netvisuals_/" target="_blank" rel="noopener">Instagram</a>
     <a href="https://www.linkedin.com/in/seiji-ma-02324123b/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="#about">About</a>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode"><svg id="theme-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg><span id="theme-label">Dark</span></button>
   </div>
 </header>
 
@@ -31,7 +42,7 @@
   <!-- HOME -->
   <div id="home">
     <section class="intro">
-      <div class="intro-logo"><img src="images/logo.png" alt="netvisuals_ logo" width="120"></div>
+      <div class="intro-logo"><img class="logo" src="images/logo.png" alt="netvisuals_ logo" width="120"></div>
       <p>Sports graphics by Seiji Ma<br><a href="https://www.instagram.com/netvisuals_/" target="_blank" rel="noopener">@netvisuals_</a> since 2020.<br>Available for commissions, inquire via instagram / linkedin</p>
     </section>
     <section class="boxes" aria-label="Work" id="boxes"></section>

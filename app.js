@@ -95,6 +95,33 @@
     else if (e.key === 'ArrowLeft') step(-1);
   });
 
+
+  // light / dark
+  var MOON = '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>';
+  var SUN = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+  function paintToggle() {
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    $('theme-icon').innerHTML = dark ? SUN : MOON;
+    $('theme-label').textContent = dark ? 'Light' : 'Dark';
+    $('theme-toggle').setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  $('theme-toggle').addEventListener('click', function () {
+    var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('nv-theme', next); } catch (e) {}
+    paintToggle();
+  });
+  if (window.matchMedia) {
+    var mq = matchMedia('(prefers-color-scheme: dark)');
+    var follow = function (e) {
+      var saved = null; try { saved = localStorage.getItem('nv-theme'); } catch (x) {}
+      if (saved) return;
+      document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light'); paintToggle();
+    };
+    if (mq.addEventListener) mq.addEventListener('change', follow); else if (mq.addListener) mq.addListener(follow);
+  }
+  paintToggle();
+
   window.addEventListener('hashchange', render);
   window.addEventListener('popstate', render);
   render();
